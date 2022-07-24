@@ -1,12 +1,12 @@
 # Housing prices
 
-## This tool is for real estate agents to add prices for their sold 
-apartments and houses to get statistics for postal areas actual prices. 
+This tool is for real estate agents to add prices for their sold 
+real estates to get statistics on postal areas actual prices. This is also for common users to see the price level on average.
  
 ## Realtors can:
 - register to housing prices tool
 - login 
-- add selling prices and information about the sold real estate
+- add prices and other information of the sold real estate
 - change information that they added
 - see statistics of sold real estate by zip code
 - see prices divided to real estates that has pipe renovation estimately 
