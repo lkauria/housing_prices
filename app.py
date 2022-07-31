@@ -1,5 +1,6 @@
 from flask import Flask
-from flask import render_template, request
+from flask import render_template 
+from flask import request
 
 app = Flask(__name__)
 
@@ -7,6 +8,6 @@ app = Flask(__name__)
 def index():
     return render_template("index.html")
 
-@app.route("/in", methods=["POST"])
+@app.route("/result", methods=["POST"])
 def result():
-    return render_template("in.html")
+    return render_template("result.html", name=request.form["username"])
