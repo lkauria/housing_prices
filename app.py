@@ -1,5 +1,5 @@
 from flask import Flask
-from flask import render_template
+from flask import render_template, request
 
 app = Flask(__name__)
 
@@ -7,7 +7,6 @@ app = Flask(__name__)
 def index():
     return render_template("index.html")
 
-@app.route("/signin")
-def page1():
-    return render_template("signin.html")
-
+@app.route("/in", methods=["POST"])
+def result():
+    return render_template("in.html")
