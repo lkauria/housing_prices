@@ -1,7 +1,15 @@
 <h1>Myytyjen asuntojen hintatiedot postinumeroalueittain</h1>
 <p>Kirjaudu käyttämään asuntojen myyntihintatyökalua laajemmin</p>
-
 <p>Placeholder, kaikkien nähtäville tulevaa tilastointia asuntojen ka-hinnoista postinumeroittain. </p>
+
+Myytyjen asuntojen määrä: {{ count }}
+<hr>
+{% for apartment in apartments %}
+{{ apartment.content }}
+<hr>
+{% endfor %}
+
+<a href="/new">Lisää myyty asunto</a>
 
 <h1>Kirjaudu</h1>
 <form action="/result" method="POST">
