@@ -5,7 +5,8 @@
 Myytyjen asuntojen määrä: {{ count }}
 <hr>
 {% for apartment in apartments %}
-{{ apartment.content }}
+<!-- this won't appear -->
+{{ apartment.street_address }}
 <hr>
 {% endfor %}
 
