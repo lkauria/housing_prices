@@ -1,15 +1,16 @@
 from flask import Flask
 from flask import redirect, render_template, request
 from flask_sqlalchemy import SQLAlchemy
+from os import getenv
 
 app = Flask(__name__)
-app.config["SQLALCHEMY_DATABASE_URI"] = "postgresql:///housing"
+app.config["SQLALCHEMY_DATABASE_URI"] = getenv("DATABASE_URL")
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 db = SQLAlchemy(app)
 
 @app.route("/")
 def index():
-    result = db.session.execute("SELECT selling_price FROM sold_apartment")
+    result = db.session.execute("SELECT selling_price, street_address FROM sold_apartment")
     apartments = result.fetchall()
     return render_template("index.html", count=len(apartments), apartments=apartments) 
 
@@ -25,7 +26,6 @@ def result():
 def send():
     street_address = request.form["street_address"]
     selling_price = request.form["selling_price"]
-    print("asunnon tiedot tuli tänne, mutta niiden tallentaminen ei ole vielä tehty")
     sql = "INSERT INTO sold_apartment (street_address,selling_price) VALUES (:street_address,:selling_price)"
     db.session.execute(sql, {"street_address":street_address, "selling_price":selling_price})
     db.session.commit()
