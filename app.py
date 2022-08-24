@@ -10,7 +10,8 @@ db = SQLAlchemy(app)
 
 @app.route("/")
 def index():
-    result = db.session.execute("SELECT selling_price, street_address FROM sold_apartment")
+    sql = "SELECT selling_price, street_address FROM sold_apartment"
+    result = db.session.execute(sql)
     apartments = result.fetchall()
     return render_template("index.html", count=len(apartments), apartments=apartments) 
 

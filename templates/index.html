@@ -5,8 +5,8 @@
 Myytyjen asuntojen määrä: {{ count }}
 <hr>
 {% for apartment in apartments %}
-{{ apartment.selling_price }}
-{{ apartment.street_address }}
+Myyntihinta: {{ apartment.selling_price }}
+Osoite: {{ apartment.street_address }}
 <hr>
 {% endfor %}
 
