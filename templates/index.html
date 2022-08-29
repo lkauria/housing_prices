@@ -12,16 +12,21 @@ Osoite: {{ apartment.street_address }}
 
 <a href="/new">Lisää myyty asunto</a>
 
+{% if session.username %}
+<p>Olet kirjautunut nimellä {{ session.username }}</p>
+<a href="/logout">Kirjaudu ulos</a>
+{% else %}
 <h1>Kirjaudu</h1>
-<form action="/result" method="POST">
-    Käyttäjätunnus:
-    <input type="text" name="username">
-    <br>
-    Salasana:
-    <input type="text" name="password">
-    <br>
+<form action="/login" method="POST">
+    <p>Tunnus:<br>
+        <input type="text" name="username">
+    </p>
+    <p>Salasana:<br>
+        <input type="password" name="password">
+    </p>
     <input type="submit" value="Kirjaudu">
 </form>
+{% endif %}
 <br>
 <br>
 <h1>Rekisteröidy</h1>
