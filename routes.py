@@ -20,8 +20,19 @@ def login():
     username = request.form["username"]
     password = request.form["password"]
     #check username and password
-    session["username"] = username
-    return redirect("/")
+    sql = "SELECT id, password FROM users WHERE username=:username"
+    result = db.session.execute(sql, {"username":username})
+    user = result.fetchone()
+    if not user:
+        return render_template("error.html", message="Tunnusta ei löydy")
+    else: 
+        hash_value = user.password
+        if check_password_hash(hash_value, password):
+            session["username"] = username
+            return redirect("/")
+        else:
+            return render_template("error.html", message="Salasana on väärä")
+    
 
 @app.route("/logout")
 def logout():
