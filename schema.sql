@@ -33,6 +33,8 @@ CREATE TABLE postal_area (
 CREATE TABLE users (
     id SERIAL PRIMARY KEY, 
     username TEXT,
+    first_name TEXT,
+    last_name TEXT,
     role TEXT, 
     password TEXT
 );

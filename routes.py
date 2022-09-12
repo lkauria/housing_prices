@@ -1,3 +1,4 @@
+from crypt import methods
 from app import app
 from flask import Flask
 from flask import redirect, render_template, request, session
@@ -18,7 +19,7 @@ def index():
 def login():
     username = request.form["username"]
     password = request.form["password"]
-    #check username and passaword
+    #check username and password
     session["username"] = username
     return redirect("/")
 
@@ -26,6 +27,21 @@ def login():
 def logout():
     del session["username"]
     return redirect("/")
+
+@app.route("/register", methods=["POST"])
+def register():
+    first_name = request.form["first_name"]
+    last_name = request.form["last_name"]
+    username = request.form["username"]
+    password = request.form["password"]
+    #check that no user with this username
+    hash_value = generate_password_hash(password)
+    sql = "INSERT INTO users (username, password, first_name, last_name) VALUES (:username, :password, :first_name, :last_name)"
+    db.session.execute(sql, {"username":username, "password":hash_value, "first_name":first_name, "last_name":last_name})
+    db.session.commit()
+    return redirect("/")
+
+
 
 @app.route("/new")
 def new():
