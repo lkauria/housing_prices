@@ -46,11 +46,17 @@ def register():
     username = request.form["username"]
     password = request.form["password"]
     #check that no user with this username
-    hash_value = generate_password_hash(password)
-    sql = "INSERT INTO users (username, password, first_name, last_name) VALUES (:username, :password, :first_name, :last_name)"
-    db.session.execute(sql, {"username":username, "password":hash_value, "first_name":first_name, "last_name":last_name})
-    db.session.commit()
-    return redirect("/")
+    sql = "SELECT id, password FROM users WHERE username=:username"
+    result = db.session.execute(sql, {"username":username})
+    user = result.fetchone()
+    if not user:
+        hash_value = generate_password_hash(password)
+        sql = "INSERT INTO users (username, password, first_name, last_name) VALUES (:username, :password, :first_name, :last_name)"
+        db.session.execute(sql, {"username":username, "password":hash_value, "first_name":first_name, "last_name":last_name})
+        db.session.commit()
+        return redirect("/")
+    else:
+        return render_template("error.html", message="Käyttäjätunnus on jo käytössä")
 
 
 
