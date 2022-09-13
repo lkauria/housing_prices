@@ -2,6 +2,8 @@
 
 This tool is for real estate agents to add prices for their sold 
 real estates to get statistics on postal areas actual prices. This is also for common users to see the price level on average.
+
+The production version can be found in Heroku: https://tsoha-housing-prices.herokuapp.com/
  
 ## Realtors can:
 - register to housing prices tool
