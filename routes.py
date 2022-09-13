@@ -19,7 +19,6 @@ def index():
 def login():
     username = request.form["username"]
     password = request.form["password"]
-    #check username and password
     sql = "SELECT id, password FROM users WHERE username=:username"
     result = db.session.execute(sql, {"username":username})
     user = result.fetchone()
@@ -45,7 +44,6 @@ def register():
     last_name = request.form["last_name"]
     username = request.form["username"]
     password = request.form["password"]
-    #check that no user with this username
     sql = "SELECT id, password FROM users WHERE username=:username"
     result = db.session.execute(sql, {"username":username})
     user = result.fetchone()
