@@ -15,6 +15,7 @@ def index():
     apartments = result.fetchall()
     return render_template("index.html", count=len(apartments), apartments=apartments) 
 
+
 @app.route("/login",methods=["POST"])
 def login():
     username = request.form["username"]
@@ -38,6 +39,7 @@ def logout():
     del session["username"]
     return redirect("/")
 
+
 @app.route("/register", methods=["POST"])
 def register():
     first_name = request.form["first_name"]
@@ -58,10 +60,10 @@ def register():
         return render_template("error.html", message="Käyttäjätunnus on jo käytössä")
 
 
-
 @app.route("/new")
 def new():
     return render_template("new.html")
+
 
 @app.route("/create", methods=["POST"])
 def send():
@@ -79,6 +81,7 @@ def send():
     db.session.execute(sql, {"street_address":street_address, "apartment_number":apartment_number, "stairwell":stairwell, "zip_code":zip_code, "selling_price":selling_price, "squares_m2":squares_m2, "housing_company_code":housing_company_code, "sales_date":sales_date})
     db.session.commit()
     return redirect("/")
+
 
 @app.route("/new_housing_company")
 def new_housing_company():
@@ -109,6 +112,7 @@ def create_housing_company():
 @app.route("/new_postal_area")
 def new_postal_area():
     return render_template("new_postal_area.html")
+
 
 @app.route("/create_postal_area", methods=["POST"])
 def create_postal_area():
