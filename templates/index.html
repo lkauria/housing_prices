@@ -1,9 +1,7 @@
 <h1>Myytyjen asuntojen hintatiedot postinumeroalueittain</h1>
 <p>Placeholder, kaikkien nähtäville tulevaa tilastointia asuntojen ka-hinnoista postinumeroittain. </p>
-
 {% if session.username %}
 <p>Olet kirjautunut nimellä {{ session.username }}</p>
-
 Myytyjen asuntojen määrä: {{ count }}
 <hr>
 {% for apartment in apartments %}
@@ -11,43 +9,26 @@ Myyntihinta: {{ apartment.selling_price }}
 Osoite: {{ apartment.street_address }}
 <hr>
 {% endfor %}
-
 <a href="/new">Lisää myyty asunto</a><br>
 <a href="/new_housing_company">Lisää taloyhtiö</a><br>
-<a href="/new_postal_area">Lisää postinumeroalue</a>
+<a href="/new_postal_area">Lisää postinumeroalue</a><br><br>
 <a href="/logout">Kirjaudu ulos</a>
 {% else %}
 <h1>Kirjaudu</h1>
 <form action="/login" method="POST">
-    <p>Tunnus:<br>
-        <input type="text" name="username">
-    </p>
-    <p>Salasana:<br>
-        <input type="password" name="password">
-    </p>
+    <p>Tunnus:<br><input type="text" name="username"></p>
+    <p>Salasana:<br><input type="password" name="password"></p>
     <input type="submit" value="Kirjaudu">
 </form>
 <br>
 <h1>Rekisteröidy</h1>
 <form action="/register" method="POST">
-    Etunimi:
-    <input type="text" name="first_name">
-    <br>
-    Sukunimi:
-    <input type="text" name="last_name">
-    <br>
-    Käyttäjätunnus:
-    <input type="text" name="username">
-    <br>
-    Salasana:
-    <input type="text" name="password">
-    <br>
-    Salasana:
-    <input type="text" name="password">
-    <br>
-    Käyttäjärooli (1 asunnonvälittäjä, 2 ylläpitäjä):
-    <input type="number" name="role">
-    <br>
+    Etunimi:<input type="text" name="first_name"><br>
+    Sukunimi:<input type="text" name="last_name"><br>
+    Käyttäjätunnus:<input type="text" name="username"><br>
+    Salasana:<input type="text" name="password"><br>
+    Salasana:<input type="text" name="password"><br>
+    Käyttäjärooli (1 asunnonvälittäjä, 2 ylläpitäjä):<input type="number" name="role"><br>
     <input type="submit" value="Rekisteröidy">
 </form>
 {% endif %}
