@@ -1,6 +1,8 @@
 <h1>Myytyjen asuntojen hintatiedot postinumeroalueittain</h1>
-<p>Kirjaudu käyttämään asuntojen myyntihintatyökalua laajemmin</p>
 <p>Placeholder, kaikkien nähtäville tulevaa tilastointia asuntojen ka-hinnoista postinumeroittain. </p>
+
+{% if session.username %}
+<p>Olet kirjautunut nimellä {{ session.username }}</p>
 
 Myytyjen asuntojen määrä: {{ count }}
 <hr>
@@ -10,14 +12,9 @@ Osoite: {{ apartment.street_address }}
 <hr>
 {% endfor %}
 
-<a href="/new">Lisää myyty asunto</a>
-<br>
-<a href="/new_housing_company">Lisää taloyhtiö</a>
-<br>
+<a href="/new">Lisää myyty asunto</a><br>
+<a href="/new_housing_company">Lisää taloyhtiö</a><br>
 <a href="/new_postal_area">Lisää postinumeroalue</a>
-
-{% if session.username %}
-<p>Olet kirjautunut nimellä {{ session.username }}</p>
 <a href="/logout">Kirjaudu ulos</a>
 {% else %}
 <h1>Kirjaudu</h1>
