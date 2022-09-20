@@ -11,6 +11,10 @@ Osoite: {{ apartment.street_address }}
 {% endfor %}
 
 <a href="/new">Lisää myyty asunto</a>
+<br>
+<a href="/new_housing_company">Lisää taloyhtiö</a>
+<br>
+<a href="/new_postal_area">Lisää postinumeroalue</a>
 
 {% if session.username %}
 <p>Olet kirjautunut nimellä {{ session.username }}</p>

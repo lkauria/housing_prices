@@ -62,10 +62,6 @@ def register():
 def new():
     return render_template("new.html")
 
-@app.route("/result", methods=["POST"])
-def result():
-    return render_template("result.html", name=request.form["username"])
-
 @app.route("/create", methods=["POST"])
 def send():
     street_address = request.form["street_address"]
@@ -81,3 +77,53 @@ def send():
     db.session.execute(sql, {"street_address":street_address, "apartment_number":apartment_number, "stairwell":stairwell, "zip_code":zip_code, "selling_price":selling_price, "squares_m2":squares_m2, "housing_company_code":housing_company_code, "sales_date":sales_date})
     db.session.commit()
     return redirect("/")
+
+@app.route("/new_housing_company")
+def new_housing_company():
+    return render_template("new_housing_company.html")
+
+
+@app.route("/create_housing_company", methods=["POST"])
+def create_housing_company():
+    company_code = request.form["company_code"]
+    street_address = request.form["street_address"]
+    zip_code = request.form["zip_code"]
+    construction_year = request.form["construction_year"]
+    last_pipe_renovation_year = request.form["last_pipe_renovation_year"]
+
+    sql = "SELECT company_code FROM housing_company WHERE company_code=:company_code"
+    result = db.session.execute(sql, {"company_code":company_code})
+    company = result.fetchone()
+    if not company:
+        
+        sql = "INSERT INTO housing_company (company_code, street_address, zip_code, construction_year, last_pipe_renovation_year) VALUES (:company_code,:street_address,:zip_code,:construction_year,:last_pipe_renovation_year)"
+        db.session.execute(sql, {"company_code":company_code, "street_address":street_address, "zip_code":zip_code, "construction_year":construction_year, "last_pipe_renovation_year":last_pipe_renovation_year})
+        db.session.commit()
+        return redirect("/")
+    else:
+        return render_template("error.html", message="Taloyhtiö on jo tietokannassa")
+
+
+@app.route("/new_postal_area")
+def new_postal_area():
+    return render_template("new_postal_area.html")
+
+@app.route("/create_postal_area", methods=["POST"])
+def create_postal_area():
+    zip_code = request.form["zip_code"]
+    postal_area_name = request.form["postal_area_name"]
+    municipality = request.form["municipality"]
+    region = request.form["region"]
+    country = request.form["country"]
+
+    sql = "SELECT zip_code FROM postal_area WHERE zip_code=:zip_code"
+    result = db.session.execute(sql, {"zip_code":zip_code})
+    zip = result.fetchone()
+    if not zip:
+        sql = "INSERT INTO postal_area (zip_code, postal_area_name, municipality, region, country) VALUES (:zip_code,:postal_area_name,:municipality,:region,:country)"
+        db.session.execute(sql, {"zip_code":zip_code, "postal_area_name":postal_area_name, "municipality":municipality, "region":region, "country":country})
+        db.session.commit()
+        return redirect("/")
+    else:
+        return render_template("error.html", message="Postinumeroalue on jo tietokannassa")
+
