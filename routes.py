@@ -36,6 +36,8 @@ def login():
 @app.route("/logout")
 def logout():
     del session["username"]
+    del session["password"]
+    del session["id"]
     return redirect("/")
 
 @app.route("/register", methods=["POST"])
@@ -44,13 +46,14 @@ def register():
     last_name = request.form["last_name"]
     username = request.form["username"]
     password = request.form["password"]
+    role = request.form["role"]
     sql = "SELECT id, password FROM users WHERE username=:username"
     result = db.session.execute(sql, {"username":username})
     user = result.fetchone()
     if not user:
         hash_value = generate_password_hash(password)
-        sql = "INSERT INTO users (username, password, first_name, last_name) VALUES (:username, :password, :first_name, :last_name)"
-        db.session.execute(sql, {"username":username, "password":hash_value, "first_name":first_name, "last_name":last_name})
+        sql = "INSERT INTO users (username, password, first_name, last_name, role) VALUES (:username, :password, :first_name, :last_name, :role)"
+        db.session.execute(sql, {"username":username, "password":hash_value, "first_name":first_name, "last_name":last_name, "role":role})
         db.session.commit()
         return redirect("/")
     else:

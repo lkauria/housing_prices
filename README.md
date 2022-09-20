@@ -3,7 +3,7 @@
 This tool is for real estate agents to add prices for their sold 
 real estates to get statistics on postal areas actual prices. This is also for common users to see the price level on average.
 
-The production version can be found in Heroku: https://tsoha-housing-prices.herokuapp.com/
+The production version can be found at Heroku: https://tsoha-housing-prices.herokuapp.com/
  
 ## Realtors can:
 - register to housing prices tool
@@ -14,6 +14,7 @@ TO DO:
 - change information that they've added
 
 ## Admin can:
+TO DO:
 - register/login
 - remove/add/change a housing company
 - remove/add/change postal code area  
