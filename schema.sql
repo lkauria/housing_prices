@@ -8,6 +8,7 @@ CREATE TABLE sold_apartment (
     squares_m2 INTEGER, 
     housing_company_code TEXT, 
     sales_date DATE, 
+    user_id TEXT,
     date timestamp NOT NULL DEFAULT NOW()
 );
 

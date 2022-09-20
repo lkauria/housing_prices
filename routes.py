@@ -72,6 +72,7 @@ def send():
     squares_m2 = request.form["squares_m2"]
     housing_company_code = request.form["housing_company_code"]
     sales_date = request.form["sales_date"]
+    # add user to the database automatically from the session
 
     sql = "INSERT INTO sold_apartment (street_address, apartment_number, stairwell, zip_code, selling_price, squares_m2, housing_company_code, sales_date) VALUES (:street_address,:apartment_number,:stairwell,:zip_code,:selling_price,:squares_m2,:housing_company_code,:sales_date)"
     db.session.execute(sql, {"street_address":street_address, "apartment_number":apartment_number, "stairwell":stairwell, "zip_code":zip_code, "selling_price":selling_price, "squares_m2":squares_m2, "housing_company_code":housing_company_code, "sales_date":sales_date})

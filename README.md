@@ -9,15 +9,9 @@ The production version can be found in Heroku: https://tsoha-housing-prices.hero
 - register to housing prices tool
 - login 
 - add prices and other information of the sold real estate
-- change information that they added
 - see statistics of sold real estate by zip code
-- see prices divided to real estates that has pipe renovation estimately 
-coming within 10 years and longer
-- can see aggregated selling prices from the other realtors
-
-## Common users can:
-- register/login
-- see the average prices of the real estate zip areas
+TO DO: 
+- change information that they've added
 
 ## Admin can:
 - register/login
@@ -35,8 +29,9 @@ CREATE TABLE sold_apartment (
     zip_code TEXT, 
     selling_price DOUBLE PRECISION, 
     squares_m2 INTEGER, 
-    housing_company_code INTEGER, 
+    housing_company_code TEXT, 
     sales_date DATE, 
+    user_id TEXT,
     date timestamp NOT NULL DEFAULT NOW()
 );
 
@@ -48,7 +43,6 @@ CREATE TABLE housing_company (
     last_pipe_renovation_year INTEGER, 
     date timestamp NOT NULL DEFAULT NOW()
 );
-
 
 CREATE TABLE postal_area (
     zip_code TEXT PRIMARY KEY,
@@ -62,6 +56,8 @@ CREATE TABLE postal_area (
 CREATE TABLE users (
     id SERIAL PRIMARY KEY, 
     username TEXT,
-    role TEXT,
+    first_name TEXT,
+    last_name TEXT,
+    role TEXT, 
     password TEXT
 );
