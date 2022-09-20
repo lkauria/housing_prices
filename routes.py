@@ -69,8 +69,15 @@ def result():
 @app.route("/create", methods=["POST"])
 def send():
     street_address = request.form["street_address"]
+    apartment_number = request.form["apartment_number"]
+    stairwell = request.form["stairwell"]
+    zip_code = request.form["zip_code"]
     selling_price = request.form["selling_price"]
-    sql = "INSERT INTO sold_apartment (street_address,selling_price) VALUES (:street_address,:selling_price)"
-    db.session.execute(sql, {"street_address":street_address, "selling_price":selling_price})
+    squares_m2 = request.form["squares_m2"]
+    housing_company_code = request.form["housing_company_code"]
+    sales_date = request.form["sales_date"]
+
+    sql = "INSERT INTO sold_apartment (street_address, apartment_number, stairwell, zip_code, selling_price, squares_m2, housing_company_code, sales_date) VALUES (:street_address,:apartment_number,:stairwell,:zip_code,:selling_price,:squares_m2,:housing_company_code,:sales_date)"
+    db.session.execute(sql, {"street_address":street_address, "apartment_number":apartment_number, "stairwell":stairwell, "zip_code":zip_code, "selling_price":selling_price, "squares_m2":squares_m2, "housing_company_code":housing_company_code, "sales_date":sales_date})
     db.session.commit()
     return redirect("/")

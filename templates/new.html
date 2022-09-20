@@ -1,10 +1,28 @@
 <h1>Lisää myyty asunto</h1>
 <form action="/create" method="POST">
-    Asunnon osoite:
+    Asunnon katuosoite:
     <input type="text" name="street_address">
+    <br>
+    Asunnon rappu:
+    <input type="text" name="stairwell">
+    <br>
+    Asunnon numero:
+    <input type="number" name="apartment_number">
+    <br>
+    Postinumero:
+    <input type="text" name="zip_code">
     <br>
     Asunnon hinta:
     <input type="number" name="selling_price">
+    <br>
+    Asunnon neliöt:
+    <input type="number" name="squares_m2">
+    <br>
+    Taloyhtiön y-tunnus:
+    <input type="text" name="housing_company_code">
+    <br>
+    Asunnon myyntipäivä:
+    <input type="date" name="sales_date">
     <br>
     <input type="submit" value="Tallenna myydyn asunnon tiedot">
 </form>

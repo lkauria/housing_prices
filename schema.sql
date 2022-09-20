@@ -6,7 +6,7 @@ CREATE TABLE sold_apartment (
     zip_code TEXT, 
     selling_price DOUBLE PRECISION, 
     squares_m2 INTEGER, 
-    housing_company_code INTEGER, 
+    housing_company_code TEXT, 
     sales_date DATE, 
     date timestamp NOT NULL DEFAULT NOW()
 );
@@ -19,7 +19,6 @@ CREATE TABLE housing_company (
     last_pipe_renovation_year INTEGER, 
     date timestamp NOT NULL DEFAULT NOW()
 );
-
 
 CREATE TABLE postal_area (
     zip_code TEXT PRIMARY KEY,
