@@ -22,7 +22,7 @@ Osoite: {{ apartment.street_address }}
 </form>
 <br>
 <h1>Rekisteröidy</h1>
-<form action="/register" method="POST">
+<form action="/register" method="POST" onsubmit="return check(this)">
     Etunimi:<input type="text" name="first_name"><br>
     Sukunimi:<input type="text" name="last_name"><br>
     Käyttäjätunnus:<input type="text" name="username"><br>
@@ -32,3 +32,14 @@ Osoite: {{ apartment.street_address }}
     <input type="submit" value="Rekisteröidy">
 </form>
 {% endif %}
+
+<script>
+    function check(form) {
+        if (form.first_name.value.length > 20 || form.first_name.value.length < 3) {
+            alert("Etunimessä pitää olla vähintään kolme ja alle 20 kirjainta");
+            return false;
+        }
+        return true;
+    }
+</script>
+    
